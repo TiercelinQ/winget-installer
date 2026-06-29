@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+release/
+*.tsbuildinfo
+
+# Runtime data
+*.db
+preferences.json
+favorites.json
+
+# Secrets
+.env
+.env.*
+
+# Claude
+.claude/
+CLAUDE.local.md
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+
+# Assets
+app-icon/files.zip
+
+# Documentations
+docs/

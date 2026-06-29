@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "catalog": "Catalogue",
+    "installed": "Installés",
+    "updates": "Mises à jour",
+    "favorites": "Favoris",
+    "settings": "Paramètres",
+    "ariaLabel": "Navigation principale"
+  },
+  "status": {
+    "ready": "Prêt",
+    "searching": "Recherche en cours…",
+    "loading": "Chargement…",
+    "installing": "Installation en cours…"
+  },
+  "pkg": {
+    "name": "Nom",
+    "id": "Identifiant",
+    "version": "Version",
+    "publisher": "Éditeur",
+    "source": "Source",
+    "actions": "Actions",
+    "category": "Catégorie",
+    "sortByName": "Trier par nom"
+  },
+  "catalog": {
+    "subtitle": "Parcourez une sélection par catégorie ou recherchez dans tout le catalogue winget.",
+    "searchPlaceholder": "Rechercher un logiciel…",
+    "searchLabel": "Recherche dans le catalogue",
+    "resultsLabel": "Résultats de recherche",
+    "selectAll": "Tout sélectionner",
+    "select": "Sélectionner",
+    "noResults": "Aucun résultat pour cette recherche.",
+    "categoriesLabel": "Catégories de logiciels",
+    "categoryGridLabel": "Logiciels de la catégorie",
+    "backToCategories": "Retour aux catégories"
+  },
+  "categories": {
+    "browsers": "Navigateurs",
+    "communication": "Communication",
+    "development": "Développement",
+    "multimedia": "Multimédia",
+    "office": "Bureautique",
+    "utilities": "Utilitaires",
+    "fileSharing": "Partage de fichiers",
+    "runtimes": ".NET & Runtimes",
+    "java": "Java",
+    "security": "Sécurité",
+    "imaging": "Imagerie & graphisme",
+    "gaming": "Jeux"
+  },
+  "installed": {
+    "subtitle": "Liste des logiciels installés sur ce système via winget.",
+    "tableLabel": "Logiciels installés",
+    "installedVersion": "Version installée",
+    "availableVersion": "Mise à jour disponible",
+    "empty": "Aucun logiciel géré par winget n'est installé.",
+    "filterPlaceholder": "Filtrer les logiciels installés…",
+    "filterLabel": "Filtrer les logiciels installés",
+    "noMatch": "Aucun logiciel installé ne correspond au filtre."
+  },
+  "updates": {
+    "subtitle": "Logiciels pour lesquels une nouvelle version est disponible.",
+    "tableLabel": "Mises à jour disponibles",
+    "availableVersion": "Nouvelle version",
+    "empty": "Tous les logiciels sont à jour."
+  },
+  "favorites": {
+    "subtitle": "Vos logiciels favoris pour une installation rapide.",
+    "tableLabel": "Favoris",
+    "empty": "Aucun favori enregistré. Cliquez sur un paquet dans le catalogue pour l'ajouter."
+  },
+  "settings": {
+    "subtitle": "Personnalisez le comportement de WinGet Hub.",
+    "theme": "Thème",
+    "themeSystem": "Suivre le système",
+    "themeLight": "Clair",
+    "themeDark": "Sombre",
+    "startupTab": "Onglet au démarrage",
+    "favorites": "Favoris",
+    "favoritesHelp": "Importez ou exportez vos favoris au format JSON.",
+    "importFavorites": "Importer",
+    "exportFavorites": "Exporter"
+  },
+  "drawer": {
+    "title": "Détails du paquet",
+    "ariaLabel": "Détails du paquet",
+    "close": "Fermer"
+  },
+  "install": {
+    "modalTitle": "Installation en cours",
+    "done": "Installation terminée",
+    "error": "Échec de l'installation",
+    "cancelled": "Installation annulée"
+  },
+  "actions": {
+    "search": "Rechercher",
+    "install": "Installer",
+    "installSelected": "Installer la sélection",
+    "update": "Mettre à jour",
+    "refresh": "Actualiser",
+    "addToFavorites": "Ajouter aux favoris",
+    "removeFromFavorites": "Retirer des favoris",
+    "cancel": "Annuler",
+    "close": "Fermer"
+  }
+}

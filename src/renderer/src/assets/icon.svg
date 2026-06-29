@@ -1,0 +1,30 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0078D4"/>
+      <stop offset="1" stop-color="#60CDFF"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="64" y1="120" x2="192" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8E8E8"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- squircle background -->
+  <rect x="8" y="8" width="240" height="240" rx="54" fill="url(#bg)"/>
+
+  <!-- download arrow -->
+  <g fill="#FFFFFF">
+    <rect x="119" y="44" width="18" height="46" rx="4"/>
+    <path d="M128 110 L98 78 L158 78 Z"/>
+  </g>
+
+  <!-- package body -->
+  <rect x="64" y="120" width="128" height="84" rx="14" fill="#FFFFFF"/>
+  <!-- package lid band -->
+  <path d="M64 134 L64 134 Q64 120 78 120 L178 120 Q192 120 192 134 L192 142 L64 142 Z" fill="url(#lid)"/>
+  <!-- center flap seam -->
+  <rect x="124" y="120" width="8" height="84" fill="#0078D4" opacity="0.18"/>
+  <!-- lid seam line -->
+  <rect x="64" y="141" width="128" height="3" fill="#767676" opacity="0.35"/>
+</svg>

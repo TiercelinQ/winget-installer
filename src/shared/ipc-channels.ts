@@ -1,0 +1,16 @@
+export const IPC = {
+  WINGET_SEARCH: "winget:search",
+  WINGET_INSTALL: "winget:install",
+  WINGET_INSTALL_CANCEL: "winget:install:cancel",
+  INSTALL_LOG: "install:log",
+  WINGET_LIST: "winget:list",
+  WINGET_UPGRADES: "winget:upgrades",
+  WINGET_UPGRADE_ONE: "winget:upgrade-one",
+  FAVORITES_LIST: "favorites:list",
+  FAVORITES_ADD: "favorites:add",
+  FAVORITES_REMOVE: "favorites:remove",
+  FAVORITES_EXPORT: "favorites:export",
+  FAVORITES_IMPORT: "favorites:import",
+  PREF_GET: "pref:get",
+  PREF_SET: "pref:set",
+} as const;
