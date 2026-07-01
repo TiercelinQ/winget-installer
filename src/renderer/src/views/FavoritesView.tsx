@@ -44,7 +44,18 @@ export function FavoritesView({ favorites, onOpenDrawer, onRemoveFavorite, onIns
       </div>
 
       {favorites.length > 0 ? (
-        <table className="data-table" aria-label={LABELS.favorites.tableLabel}>
+        <>
+          <div className="view-toolbar">
+            <button
+              className="btn btn-primary btn-md"
+              onClick={() => onInstall(favorites.map((f) => f.id))}
+            >
+              <i className="fa-solid fa-download icon icon-md" aria-hidden="true" />
+              {LABELS.actions.installAllFavorites} ({favorites.length})
+            </button>
+          </div>
+
+          <table className="data-table" aria-label={LABELS.favorites.tableLabel}>
           <thead>
             <tr>
               <th>
@@ -101,6 +112,7 @@ export function FavoritesView({ favorites, onOpenDrawer, onRemoveFavorite, onIns
             ))}
           </tbody>
         </table>
+        </>
       ) : (
         <p className="empty-state">{LABELS.favorites.empty}</p>
       )}
