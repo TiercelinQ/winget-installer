@@ -1,6 +1,6 @@
 import type { Preferences } from "../../../../shared/types";
 import LABELS from "../../i18n/fr.json";
-import logoUrl from "../../assets/icon.svg";
+import logoUrl from "../../assets/icon.png";
 
 export type TabId = Preferences["startupTab"];
 

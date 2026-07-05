@@ -27,7 +27,7 @@ npm-debug.log*
 .DS_Store
 
 # Assets
-app-icon/files.zip
+app-icon
 
 # Documentations
 docs/

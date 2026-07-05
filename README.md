@@ -8,20 +8,20 @@ Graphical interface for `winget`: category browsing (curated selection), catalog
 
 ## Stack
 
-| Item         | Value                                                            |
-| ------------ | ---------------------------------------------------------------- |
-| Runtime      | Node.js 22 LTS · Electron ≥ 42                                   |
-| Language     | TypeScript strict                                                |
-| Renderer     | React 19 (functional components + hooks)                         |
-| Build        | electron-vite + Vite 7                                           |
+| Item         | Value                                                             |
+| ------------ | ----------------------------------------------------------------- |
+| Runtime      | Node.js 22 LTS · Electron ≥ 42                                    |
+| Language     | TypeScript strict                                                 |
+| Renderer     | React 19 (functional components + hooks)                          |
+| Build        | electron-vite + Vite 7                                            |
 | Architecture | Strict MVC - main = Models · renderer = Views · IPC = Controllers |
-| Style        | Centralized CSS (tokens.css + styles.css)                        |
-| Icons        | Font Awesome Free 6                                              |
-| Packaging    | electron-builder (NSIS + portable)                              |
-| DB           | None (flat JSON file via Node.js stdlib)                         |
-| i18n         | No - FR strings centralized in `i18n/fr.json`                    |
-| Tests        | No                                                               |
-| Design       | design-system.md v1.5 · layout.md v2.1                          |
+| Style        | Centralized CSS (tokens.css + styles.css)                         |
+| Icons        | Font Awesome Free 6                                               |
+| Packaging    | electron-builder (NSIS + portable)                                |
+| DB           | None (flat JSON file via Node.js stdlib)                          |
+| i18n         | No - FR strings centralized in `i18n/fr.json`                     |
+| Tests        | No                                                                |
+| Design       | design-system.md v1.5 · layout.md v2.1                            |
 
 ## File tree
 
@@ -68,22 +68,22 @@ winget-installer/
 
 ## IPC channels
 
-| Channel                 | Type               | Description                            |
-| ----------------------- | ------------------ | -------------------------------------- |
-| `winget:search`         | invoke             | Search the catalog                     |
-| `winget:install`        | invoke             | Install a list of packages             |
-| `winget:install:cancel` | invoke             | Cancel the running installation        |
-| `install:log`           | push main→renderer | Real-time log line                     |
-| `winget:list`           | invoke             | List installed packages                |
-| `winget:upgrades`       | invoke             | List available updates                 |
-| `winget:upgrade-one`    | invoke             | Update a package                       |
-| `favorites:list`        | invoke             | Get favorites                          |
-| `favorites:add`         | invoke             | Add a favorite                         |
-| `favorites:remove`      | invoke             | Remove a favorite                      |
-| `favorites:export`      | invoke             | Export favorites to JSON (dialog)      |
+| Channel                 | Type               | Description                                |
+| ----------------------- | ------------------ | ------------------------------------------ |
+| `winget:search`         | invoke             | Search the catalog                         |
+| `winget:install`        | invoke             | Install a list of packages                 |
+| `winget:install:cancel` | invoke             | Cancel the running installation            |
+| `install:log`           | push main→renderer | Real-time log line                         |
+| `winget:list`           | invoke             | List installed packages                    |
+| `winget:upgrades`       | invoke             | List available updates                     |
+| `winget:upgrade-one`    | invoke             | Update a package                           |
+| `favorites:list`        | invoke             | Get favorites                              |
+| `favorites:add`         | invoke             | Add a favorite                             |
+| `favorites:remove`      | invoke             | Remove a favorite                          |
+| `favorites:export`      | invoke             | Export favorites to JSON (dialog)          |
 | `favorites:import`      | invoke             | Import favorites from JSON (dialog, merge) |
-| `pref:get`              | invoke             | Read preferences                       |
-| `pref:set`              | invoke             | Write a preference                     |
+| `pref:get`              | invoke             | Read preferences                           |
+| `pref:set`              | invoke             | Write a preference                         |
 
 ## Conventions
 
@@ -91,7 +91,7 @@ winget-installer/
 - **Dark theme**: `data-theme="dark"` on `<html>`, tokens redefined in a single `[data-theme="dark"]` block.
 - **Errors**: the model throws typed errors → the controller returns `IpcResult<T>` → the view shows a toast.
 - **Drawer**: 480px (declared deviation vs 320px in layout.md), justified by the density of winget metadata.
-- **Icon**: `resources/icon.ico` + 24px SVG in the topbar.
+- **Icon**: `resources/icon.ico` (multi-size 16→256) + topbar PNG logo (`assets/icon.png`).
 - **Catalog**: `data/catalog.ts` holds a curated selection (categories → verified winget ids). Since winget exposes neither a full catalog nor categories, this static list feeds category browsing; installation reuses the `winget:install` channel.
 
 ## Install and run
