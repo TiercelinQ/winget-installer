@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { X } from "lucide-react";
 import LABELS from "../../i18n/fr.json";
 
 type InstallState = "idle" | "running" | "done" | "error" | "cancelled";
@@ -56,7 +57,7 @@ export function Modal({ isOpen, state, logs, onCancel, onClose }: Props) {
           </span>
           {isDone && (
             <button className="btn-ghost" onClick={onClose} aria-label={LABELS.actions.close}>
-              <i className="fa-solid fa-xmark icon icon-lg" aria-hidden="true" />
+              <X className="icon icon-lg" strokeWidth={1.75} aria-hidden="true" />
             </button>
           )}
         </div>

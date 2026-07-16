@@ -31,7 +31,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: "24px", color: "#DC2626" }}>
+        <div className="error-boundary">
           Une erreur inattendue s&apos;est produite. Redémarrez l&apos;application.
         </div>
       );

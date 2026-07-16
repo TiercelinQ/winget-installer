@@ -1,3 +1,4 @@
+import { FileDown, FileUp } from "lucide-react";
 import type { Preferences } from "../../../shared/types";
 import LABELS from "../i18n/fr.json";
 
@@ -53,11 +54,11 @@ export function SettingsView({ preferences, onSetPreference, onImportFavorites, 
           <p className="field-help">{LABELS.settings.favoritesHelp}</p>
           <div className="btn-group">
             <button className="btn btn-secondary btn-md" onClick={onImportFavorites}>
-              <i className="fa-solid fa-file-import icon icon-md" aria-hidden="true" />
+              <FileDown className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
               {LABELS.settings.importFavorites}
             </button>
             <button className="btn btn-secondary btn-md" onClick={onExportFavorites}>
-              <i className="fa-solid fa-file-export icon icon-md" aria-hidden="true" />
+              <FileUp className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
               {LABELS.settings.exportFavorites}
             </button>
           </div>

@@ -15,7 +15,8 @@ function createWindow(): BrowserWindow {
     show: false,
     autoHideMenuBar: true,
     icon: join(__dirname, "../../resources/icon.ico"),
-    backgroundColor: "#F3F3F3",
+    backgroundColor: "#FDFEFF", // sourced from tokens.css --bg (light) — avoids white flash before the renderer paints
+
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,

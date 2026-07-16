@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { X, Download, Star } from "lucide-react";
 import type { PackageInfo, Favorite } from "../../../../shared/types";
 import LABELS from "../../i18n/fr.json";
 
@@ -46,7 +47,7 @@ export function Drawer({ pkg, favorite, isOpen, onClose, onInstall, onAddFavorit
             onClick={onClose}
             aria-label={LABELS.drawer.close}
           >
-            <i className="fa-solid fa-xmark icon icon-lg" aria-hidden="true" />
+            <X className="icon icon-lg" strokeWidth={1.75} aria-hidden="true" />
           </button>
         </div>
 
@@ -76,7 +77,7 @@ export function Drawer({ pkg, favorite, isOpen, onClose, onInstall, onAddFavorit
                 className="btn btn-primary btn-md"
                 onClick={() => onInstall(pkg.id)}
               >
-                <i className="fa-solid fa-download icon icon-md" aria-hidden="true" />
+                <Download className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                 {LABELS.actions.install}
               </button>
 
@@ -85,7 +86,7 @@ export function Drawer({ pkg, favorite, isOpen, onClose, onInstall, onAddFavorit
                   className="btn btn-secondary btn-md"
                   onClick={() => onRemoveFavorite(pkg.id)}
                 >
-                  <i className="fa-solid fa-star icon icon-md" aria-hidden="true" />
+                  <Star className="icon icon-md icon-active is-filled" strokeWidth={1.75} aria-hidden="true" />
                   {LABELS.actions.removeFromFavorites}
                 </button>
               ) : (
@@ -93,7 +94,7 @@ export function Drawer({ pkg, favorite, isOpen, onClose, onInstall, onAddFavorit
                   className="btn btn-secondary btn-md"
                   onClick={() => onAddFavorite(pkg)}
                 >
-                  <i className="fa-regular fa-star icon icon-md" aria-hidden="true" />
+                  <Star className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                   {LABELS.actions.addToFavorites}
                 </button>
               )}

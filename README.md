@@ -16,12 +16,12 @@ Graphical interface for `winget`: category browsing (curated selection), catalog
 | Build        | electron-vite + Vite 7                                            |
 | Architecture | Strict MVC - main = Models · renderer = Views · IPC = Controllers |
 | Style        | Centralized CSS (tokens.css + styles.css)                         |
-| Icons        | Font Awesome Free 6                                               |
+| Icons        | Lucide (`lucide-react`)                                          |
 | Packaging    | electron-builder (NSIS + portable)                                |
 | DB           | None (flat JSON file via Node.js stdlib)                          |
 | i18n         | No - FR strings centralized in `i18n/fr.json`                     |
 | Tests        | No                                                                |
-| Design       | design-system.md v1.5 · layout.md v2.1                            |
+| Design       | design-system.md v2.0 · layout.md v4.1                            |
 
 ## File tree
 

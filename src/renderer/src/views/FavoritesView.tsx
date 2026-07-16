@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Download, Trash2, ChevronUp, ChevronDown } from "lucide-react";
 import type { Favorite, PackageInfo } from "../../../shared/types";
 import { truncateText, sortByName } from "../utils/helpers";
 import { CATALOG_CATEGORIES } from "../data/catalog";
@@ -50,7 +51,7 @@ export function FavoritesView({ favorites, onOpenDrawer, onRemoveFavorite, onIns
               className="btn btn-primary btn-md"
               onClick={() => onInstall(favorites.map((f) => f.id))}
             >
-              <i className="fa-solid fa-download icon icon-md" aria-hidden="true" />
+              <Download className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
               {LABELS.actions.installAllFavorites} ({favorites.length})
             </button>
           </div>
@@ -65,10 +66,11 @@ export function FavoritesView({ favorites, onOpenDrawer, onRemoveFavorite, onIns
                   aria-label={LABELS.pkg.sortByName}
                 >
                   {LABELS.pkg.name}
-                  <i
-                    className={`fa-solid ${sortAsc ? "fa-sort-up" : "fa-sort-down"} icon icon-sm`}
-                    aria-hidden="true"
-                  />
+                  {sortAsc ? (
+                    <ChevronUp className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                  ) : (
+                    <ChevronDown className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                  )}
                 </button>
               </th>
               <th>{LABELS.pkg.id}</th>
@@ -96,7 +98,7 @@ export function FavoritesView({ favorites, onOpenDrawer, onRemoveFavorite, onIns
                       className="btn btn-primary btn-sm"
                       onClick={() => onInstall([fav.id])}
                     >
-                      <i className="fa-solid fa-download icon icon-md" aria-hidden="true" />
+                      <Download className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                       {LABELS.actions.install}
                     </button>
                     <button
@@ -104,7 +106,7 @@ export function FavoritesView({ favorites, onOpenDrawer, onRemoveFavorite, onIns
                       onClick={() => onRemoveFavorite(fav.id)}
                       aria-label={`${LABELS.actions.removeFromFavorites} ${fav.name}`}
                     >
-                      <i className="fa-solid fa-trash icon icon-md" aria-hidden="true" />
+                      <Trash2 className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                     </button>
                   </div>
                 </td>

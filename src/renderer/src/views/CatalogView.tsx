@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { Search, Download, Star, ArrowLeft, ChevronUp, ChevronDown } from "lucide-react";
 import type { PackageInfo, Favorite } from "../../../shared/types";
 import { truncateText, formatVersion, sortByName } from "../utils/helpers";
 import { CATALOG_CATEGORIES } from "../data/catalog";
@@ -119,23 +120,26 @@ export function CatalogView({
           onClick={handleSearch}
           disabled={searching}
         >
-          <i className="fa-solid fa-magnifying-glass icon icon-md" aria-hidden="true" />
+          <Search className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
           {LABELS.actions.search}
         </button>
       </div>
 
       <nav className="category-bar" aria-label={LABELS.catalog.categoriesLabel}>
-        {CATALOG_CATEGORIES.map((cat, i) => (
-          <button
-            key={cat.labelKey}
-            className={`category-chip${mode === "browse" && activeCategory === i ? " is-active" : ""}`}
-            onClick={() => selectCategory(i)}
-            aria-current={mode === "browse" && activeCategory === i ? "true" : undefined}
-          >
-            <i className={`fa-solid ${cat.icon} icon icon-md`} aria-hidden="true" />
-            {CATEGORY_LABELS[cat.labelKey]}
-          </button>
-        ))}
+        {CATALOG_CATEGORIES.map((cat, i) => {
+          const CatIcon = cat.icon;
+          return (
+            <button
+              key={cat.labelKey}
+              className={`category-chip${mode === "browse" && activeCategory === i ? " is-active" : ""}`}
+              onClick={() => selectCategory(i)}
+              aria-current={mode === "browse" && activeCategory === i ? "true" : undefined}
+            >
+              <CatIcon className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
+              {CATEGORY_LABELS[cat.labelKey]}
+            </button>
+          );
+        })}
       </nav>
 
       {mode === "browse" ? (
@@ -151,7 +155,7 @@ export function CatalogView({
                 </button>
                 <div className="package-card-actions">
                   <button className="btn btn-primary btn-sm" onClick={() => onInstall([pkg.id])}>
-                    <i className="fa-solid fa-download icon icon-md" aria-hidden="true" />
+                    <Download className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                     {LABELS.actions.install}
                   </button>
                   <button
@@ -160,8 +164,9 @@ export function CatalogView({
                     aria-label={fav ? LABELS.actions.removeFromFavorites : LABELS.actions.addToFavorites}
                     title={fav ? LABELS.actions.removeFromFavorites : LABELS.actions.addToFavorites}
                   >
-                    <i
-                      className={`${fav ? "fa-solid icon-active" : "fa-regular"} fa-star icon icon-md`}
+                    <Star
+                      className={`icon icon-md${fav ? " icon-active is-filled" : ""}`}
+                      strokeWidth={1.75}
                       aria-hidden="true"
                     />
                   </button>
@@ -180,11 +185,11 @@ export function CatalogView({
                   onClick={handleInstallSelected}
                   disabled={selected.size === 0}
                 >
-                  <i className="fa-solid fa-download icon icon-md" aria-hidden="true" />
+                  <Download className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                   {LABELS.actions.installSelected} ({selected.size})
                 </button>
                 <button className="btn btn-ghost btn-md" onClick={() => selectCategory(activeCategory)}>
-                  <i className="fa-solid fa-arrow-left icon icon-md" aria-hidden="true" />
+                  <ArrowLeft className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                   {LABELS.catalog.backToCategories}
                 </button>
               </div>
@@ -207,10 +212,11 @@ export function CatalogView({
                         aria-label={LABELS.pkg.sortByName}
                       >
                         {LABELS.pkg.name}
-                        <i
-                          className={`fa-solid ${sortAsc ? "fa-sort-up" : "fa-sort-down"} icon icon-sm`}
-                          aria-hidden="true"
-                        />
+                        {sortAsc ? (
+                          <ChevronUp className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                        ) : (
+                          <ChevronDown className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                        )}
                       </button>
                     </th>
                     <th>{LABELS.pkg.id}</th>
@@ -254,8 +260,9 @@ export function CatalogView({
                             aria-label={fav ? LABELS.actions.removeFromFavorites : LABELS.actions.addToFavorites}
                             title={fav ? LABELS.actions.removeFromFavorites : LABELS.actions.addToFavorites}
                           >
-                            <i
-                              className={`${fav ? "fa-solid icon-active" : "fa-regular"} fa-star icon icon-md`}
+                            <Star
+                              className={`icon icon-md${fav ? " icon-active is-filled" : ""}`}
+                              strokeWidth={1.75}
                               aria-hidden="true"
                             />
                           </button>

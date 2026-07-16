@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/tokens.css";
 import "./styles/styles.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import App from "./App";
 
 const root = document.getElementById("root");

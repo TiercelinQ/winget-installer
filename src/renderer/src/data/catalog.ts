@@ -6,6 +6,22 @@
  * `labelKey` resolves against `i18n/fr.json` → `categories`.
  */
 
+import {
+  Globe,
+  MessagesSquare,
+  Code,
+  Film,
+  Briefcase,
+  Wrench,
+  Share2,
+  Boxes,
+  Coffee,
+  ShieldHalf,
+  Image,
+  Gamepad2,
+  type LucideIcon,
+} from "lucide-react";
+
 export interface CuratedPackage {
   id: string;
   name: string;
@@ -14,15 +30,15 @@ export interface CuratedPackage {
 export interface CatalogCategory {
   /** Matches a key under `categories` in fr.json. */
   labelKey: string;
-  /** Font Awesome solid icon class (without the `fa-` size/style helpers). */
-  icon: string;
+  /** Lucide icon component for the category chip. */
+  icon: LucideIcon;
   packages: CuratedPackage[];
 }
 
 export const CATALOG_CATEGORIES: CatalogCategory[] = [
   {
     labelKey: "browsers",
-    icon: "fa-globe",
+    icon: Globe,
     packages: [
       { id: "Google.Chrome", name: "Google Chrome" },
       { id: "Mozilla.Firefox", name: "Mozilla Firefox" },
@@ -35,7 +51,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "communication",
-    icon: "fa-comments",
+    icon: MessagesSquare,
     packages: [
       { id: "Discord.Discord", name: "Discord" },
       { id: "Zoom.Zoom", name: "Zoom" },
@@ -48,7 +64,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "development",
-    icon: "fa-code",
+    icon: Code,
     packages: [
       { id: "Microsoft.VisualStudioCode", name: "Visual Studio Code" },
       { id: "Git.Git", name: "Git" },
@@ -67,7 +83,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "multimedia",
-    icon: "fa-photo-film",
+    icon: Film,
     packages: [
       { id: "VideoLAN.VLC", name: "VLC media player" },
       { id: "OBSProject.OBSStudio", name: "OBS Studio" },
@@ -82,7 +98,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "office",
-    icon: "fa-briefcase",
+    icon: Briefcase,
     packages: [
       { id: "TheDocumentFoundation.LibreOffice", name: "LibreOffice" },
       { id: "Adobe.Acrobat.Reader.64-bit", name: "Adobe Acrobat Reader" },
@@ -97,7 +113,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "utilities",
-    icon: "fa-screwdriver-wrench",
+    icon: Wrench,
     packages: [
       { id: "7zip.7zip", name: "7-Zip" },
       { id: "Microsoft.PowerToys", name: "Microsoft PowerToys" },
@@ -114,7 +130,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "fileSharing",
-    icon: "fa-share-nodes",
+    icon: Share2,
     packages: [
       { id: "qBittorrent.qBittorrent", name: "qBittorrent" },
       { id: "WinSCP.WinSCP", name: "WinSCP" },
@@ -125,7 +141,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "runtimes",
-    icon: "fa-cubes",
+    icon: Boxes,
     packages: [
       { id: "Microsoft.DotNet.SDK.8", name: ".NET SDK 8" },
       { id: "Microsoft.DotNet.DesktopRuntime.8", name: ".NET Desktop Runtime 8" },
@@ -136,7 +152,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "java",
-    icon: "fa-mug-hot",
+    icon: Coffee,
     packages: [
       { id: "EclipseAdoptium.Temurin.21.JDK", name: "Eclipse Temurin 21 (JDK)" },
       { id: "EclipseAdoptium.Temurin.17.JDK", name: "Eclipse Temurin 17 (JDK)" },
@@ -146,7 +162,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "security",
-    icon: "fa-shield-halved",
+    icon: ShieldHalf,
     packages: [
       { id: "Bitwarden.Bitwarden", name: "Bitwarden" },
       { id: "KeePassXCTeam.KeePassXC", name: "KeePassXC" },
@@ -157,7 +173,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "imaging",
-    icon: "fa-image",
+    icon: Image,
     packages: [
       { id: "Inkscape.Inkscape", name: "Inkscape" },
       { id: "BlenderFoundation.Blender", name: "Blender" },
@@ -169,7 +185,7 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   },
   {
     labelKey: "gaming",
-    icon: "fa-gamepad",
+    icon: Gamepad2,
     packages: [
       { id: "Valve.Steam", name: "Steam" },
       { id: "EpicGames.EpicGamesLauncher", name: "Epic Games Launcher" },

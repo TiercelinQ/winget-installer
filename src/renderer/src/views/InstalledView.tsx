@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { RefreshCw, ChevronUp, ChevronDown } from "lucide-react";
 import type { InstalledPackage } from "../../../shared/types";
 import { truncateText, sortByName } from "../utils/helpers";
 import LABELS from "../i18n/fr.json";
@@ -50,7 +51,7 @@ export function InstalledView({ onStatusChange }: Props) {
 
       <div className="view-toolbar">
         <button className="btn btn-secondary btn-md" onClick={load} disabled={loading}>
-          <i className="fa-solid fa-rotate-right icon icon-md" aria-hidden="true" />
+          <RefreshCw className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
           {LABELS.actions.refresh}
         </button>
         <input
@@ -78,10 +79,11 @@ export function InstalledView({ onStatusChange }: Props) {
                   aria-label={LABELS.pkg.sortByName}
                 >
                   {LABELS.pkg.name}
-                  <i
-                    className={`fa-solid ${sortAsc ? "fa-sort-up" : "fa-sort-down"} icon icon-sm`}
-                    aria-hidden="true"
-                  />
+                  {sortAsc ? (
+                    <ChevronUp className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                  ) : (
+                    <ChevronDown className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                  )}
                 </button>
               </th>
               <th>{LABELS.pkg.id}</th>

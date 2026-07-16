@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { RefreshCw, ArrowUp, ChevronUp, ChevronDown } from "lucide-react";
 import type { UpgradeInfo } from "../../../shared/types";
 import { truncateText, sortByName } from "../utils/helpers";
 import LABELS from "../i18n/fr.json";
@@ -44,7 +45,7 @@ export function UpdatesView({ onInstallSingle, onStatusChange }: Props) {
 
       <div className="view-toolbar">
         <button className="btn btn-secondary btn-md" onClick={load} disabled={loading}>
-          <i className="fa-solid fa-rotate-right icon icon-md" aria-hidden="true" />
+          <RefreshCw className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
           {LABELS.actions.refresh}
         </button>
       </div>
@@ -60,10 +61,11 @@ export function UpdatesView({ onInstallSingle, onStatusChange }: Props) {
                   aria-label={LABELS.pkg.sortByName}
                 >
                   {LABELS.pkg.name}
-                  <i
-                    className={`fa-solid ${sortAsc ? "fa-sort-up" : "fa-sort-down"} icon icon-sm`}
-                    aria-hidden="true"
-                  />
+                  {sortAsc ? (
+                    <ChevronUp className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                  ) : (
+                    <ChevronDown className="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+                  )}
                 </button>
               </th>
               <th>{LABELS.pkg.id}</th>
@@ -84,7 +86,7 @@ export function UpdatesView({ onInstallSingle, onStatusChange }: Props) {
                     className="btn btn-primary btn-sm"
                     onClick={() => onInstallSingle(pkg.id)}
                   >
-                    <i className="fa-solid fa-arrow-up icon icon-md" aria-hidden="true" />
+                    <ArrowUp className="icon icon-md" strokeWidth={1.75} aria-hidden="true" />
                     {LABELS.actions.update}
                   </button>
                 </td>

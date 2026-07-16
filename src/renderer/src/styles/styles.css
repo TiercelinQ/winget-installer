@@ -1,11 +1,11 @@
 /* ============================================================
    styles.css — WinGet Hub v1.0.0
-   Reference: design-system.md v1.5 (Electron) · layout.md v2.1
+   Reference: design-system.md v2.0 (Electron) · layout.md v4.1
    ============================================================ */
 
 /* --- BASE --------------------------------------------------- */
 /* token: bg / text / font-family / leading-normal */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background-color: var(--bg);
@@ -65,12 +65,27 @@ code {
 }
 
 /* --- TABS --------------------------------------------------- */
+/* container carries the signature underline ::after — design-system.md §8
+   (JS writes --underline-x / --underline-w, the only JS-positioned visual) */
 /* token: font-sm / weight-medium / text-subtle / topbar-height / spacing-4 */
 #topbar-tabs {
+  position: relative;
   display: flex;
   align-items: stretch;
   flex: 1;
   height: 100%;
+}
+
+/* token: primary / border-width-emphasis / transition-slow */
+#topbar-tabs::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: var(--border-width-emphasis);
+  background: var(--primary);
+  left: var(--underline-x, 0);
+  width: var(--underline-w, 0);
+  transition: left var(--transition-slow), width var(--transition-slow);
 }
 
 .tab {
@@ -84,22 +99,19 @@ code {
   color: var(--text-subtle);
   background: transparent;
   border: none;
-  border-bottom: var(--border-width-emphasis) solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color var(--transition-default), color var(--transition-default);
+  transition: color var(--transition-default);
 }
 
-/* token: bg-muted / transition-default */
+/* token: text — neutral hover is a text-emphasis cue (underline marks the selection) */
 .tab:hover {
-  background-color: var(--bg-muted);
   color: var(--text);
 }
 
-/* token: primary / border-width-emphasis */
+/* token: primary — active tab, indicator is the sliding underline (§8) */
 .tab.is-active {
   color: var(--primary);
-  border-bottom-color: var(--primary);
 }
 
 /* --- MAIN CONTENT ------------------------------------------ */
@@ -137,7 +149,7 @@ code {
 }
 
 /* --- SEARCH BAR -------------------------------------------- */
-/* token: bg-subtle / border / text / font-base / spacing-3 */
+/* token: bg-subtle / border / text / font-base / spacing-3 / radius */
 .search-bar {
   display: flex;
   gap: var(--spacing-3);
@@ -152,6 +164,7 @@ code {
   color: var(--text);
   background-color: var(--bg-subtle);
   border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
   outline: none;
 }
 
@@ -178,7 +191,7 @@ code {
   margin-bottom: var(--spacing-6);
 }
 
-/* token: border / text-subtle / spacing-2 / spacing-3 / font-sm / weight-medium / transition-default */
+/* token: border / text-subtle / spacing-2 / spacing-3 / font-sm / weight-medium / radius / transition-default */
 .category-chip {
   display: inline-flex;
   align-items: center;
@@ -186,16 +199,17 @@ code {
   padding: var(--spacing-2) var(--spacing-3);
   background: transparent;
   border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
   color: var(--text-subtle);
   font-size: var(--font-sm);
   font-weight: var(--weight-medium);
   cursor: pointer;
-  transition: background-color var(--transition-default), color var(--transition-default);
+  transition: border-color var(--transition-default), color var(--transition-default);
 }
 
-/* token: bg-muted / text */
+/* token: border-strong / text — v2.0 neutral hover strengthens the border */
 .category-chip:hover {
-  background-color: var(--bg-muted);
+  border-color: var(--border-strong);
   color: var(--text);
 }
 
@@ -213,7 +227,7 @@ code {
   gap: var(--spacing-4);
 }
 
-/* token: bg-subtle / border / spacing-3 / spacing-4 */
+/* token: bg-subtle / border / spacing-3 / spacing-4 / radius */
 .package-card {
   display: flex;
   flex-direction: column;
@@ -221,6 +235,7 @@ code {
   padding: var(--spacing-4);
   background-color: var(--bg-subtle);
   border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
 }
 
 /* token: spacing-1 */
@@ -268,6 +283,7 @@ code {
   width: 100%;
   border-collapse: collapse;
   font-size: var(--font-sm);
+  font-variant-numeric: tabular-nums;
 }
 
 .data-table thead th {
@@ -294,6 +310,7 @@ code {
   font-weight: var(--weight-semibold);
   font-size: var(--font-sm);
   cursor: pointer;
+  transition: color var(--transition-default);
 }
 
 /* token: text */
@@ -306,9 +323,9 @@ code {
   transition: background-color var(--transition-default);
 }
 
-/* token: bg-muted */
+/* token: bg-subtle — wide-row hover secondary cue (design-system.md §8) */
 .data-table tbody tr:hover {
-  background-color: var(--bg-muted);
+  background-color: var(--bg-subtle);
 }
 
 /* token: pointer cursor for rows that open the drawer */
@@ -340,15 +357,23 @@ code {
   color: var(--icon-active);
 }
 
-/* token: primary / border / spacing-1 / font-xs */
+/* token: primary / border / spacing-1 / font-xs / radius */
 .badge-update {
   display: inline-block;
   padding: var(--spacing-1) var(--spacing-2);
   background-color: var(--primary-bg);
   color: var(--primary);
   border: var(--border-width) solid var(--primary);
+  border-radius: var(--radius);
   font-size: var(--font-xs);
   font-weight: var(--weight-medium);
+}
+
+/* --- ERROR BOUNDARY ---------------------------------------- */
+/* token: spacing-6 / danger-600 — App.tsx ErrorBoundary fallback */
+.error-boundary {
+  padding: var(--spacing-6);
+  color: var(--danger-600);
 }
 
 /* --- EMPTY STATE ------------------------------------------- */
@@ -387,7 +412,7 @@ code {
   color: var(--text-subtle);
 }
 
-/* token: bg-subtle / border / text / font-sm / spacing-2 / spacing-3 */
+/* token: bg-subtle / border / text / font-sm / spacing-2 / spacing-3 / radius */
 .field select {
   width: 100%;
   padding: var(--spacing-2) var(--spacing-3);
@@ -396,6 +421,7 @@ code {
   color: var(--text);
   background-color: var(--bg-subtle);
   border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
   cursor: pointer;
   outline: none;
 }
@@ -451,7 +477,7 @@ code {
   pointer-events: none;
 }
 
-/* token: spacing-3 / spacing-4 / border-width-accent / font-sm / weight-medium */
+/* token: spacing-3 / spacing-4 / border-width-accent / font-sm / weight-medium / radius */
 .toast {
   display: flex;
   align-items: flex-start;
@@ -459,15 +485,10 @@ code {
   width: 320px;
   padding: var(--spacing-3) var(--spacing-4);
   border-left: var(--border-width-accent) solid transparent;
+  border-radius: var(--radius);
   font-size: var(--font-sm);
   font-weight: var(--weight-medium);
   pointer-events: auto;
-  animation: toast-in var(--transition-slow) ease forwards;
-}
-
-@keyframes toast-in {
-  from { transform: translateX(100%); opacity: 0; }
-  to   { transform: translateX(0);    opacity: 1; }
 }
 
 .toast-body {
@@ -518,7 +539,7 @@ code {
 .toast-info .icon { color: var(--icon-info); }
 
 /* --- DRAWER ------------------------------------------------- */
-/* token: drawer-width / bg-elevated / border / z-drawer / transition-slow / spacing-6 */
+/* token: drawer-width / bg-elevated / border-strong / z-drawer / transition-slow / spacing-6 */
 #drawer {
   position: fixed;
   top: var(--topbar-height);
@@ -526,7 +547,7 @@ code {
   bottom: var(--statusbar-height);
   width: var(--drawer-width);
   background-color: var(--bg-elevated);
-  border-left: var(--border-width) solid var(--border);
+  border-left: var(--border-width) solid var(--border-strong);
   z-index: var(--z-drawer);
   transform: translateX(100%);
   transition: transform var(--transition-slow);
@@ -619,10 +640,11 @@ code {
   justify-content: center;
 }
 
-/* token: bg / border / spacing-6 / z-modal / font-lg / weight-semibold */
+/* token: bg / border-strong / spacing-6 / z-modal / font-lg / weight-semibold / radius */
 .modal {
   background-color: var(--bg);
-  border: var(--border-width) solid var(--border);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
   z-index: var(--z-modal);
   min-width: 480px;
   max-width: 720px;
@@ -662,7 +684,7 @@ code {
   flex-shrink: 0;
 }
 
-/* token: bg-muted / text / font-xs / spacing-3 / leading-normal */
+/* token: bg-muted / text / font-xs / spacing-3 / leading-normal / radius */
 .log-output {
   width: 100%;
   height: 100%;
@@ -674,12 +696,13 @@ code {
   font-size: var(--font-xs);
   line-height: var(--leading-normal);
   padding: var(--spacing-3);
+  border-radius: var(--radius);
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 /* --- BUTTONS ----------------------------------------------- */
-/* token: spacing-1/2/3/4/6 / font-xs/sm/base / weight-medium / transition-default */
+/* token: spacing-1/2/3/4/6 / font-xs/sm/base / weight-medium / radius / transition-default */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -687,8 +710,9 @@ code {
   font-family: var(--font-family);
   font-weight: var(--weight-medium);
   cursor: pointer;
-  border: none;
-  transition: background-color var(--transition-default), color var(--transition-default);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius);
+  transition: background-color var(--transition-default), border-color var(--transition-default), color var(--transition-default);
   white-space: nowrap;
 }
 
@@ -722,13 +746,13 @@ code {
 .btn-primary:hover  { background-color: var(--primary-hover); }
 .btn-primary:active { background-color: var(--primary-pressed); }
 
-/* token: transparent / text / border */
+/* token: transparent / text / border — v2.0 hover strengthens the border */
 .btn-secondary {
   background-color: transparent;
   color: var(--text);
-  border: var(--border-width) solid var(--border);
+  border-color: var(--border);
 }
-.btn-secondary:hover  { background-color: var(--bg-muted); }
+.btn-secondary:hover  { border-color: var(--border-strong); }
 .btn-secondary:active { background-color: var(--bg-muted); }
 
 /* token: danger-600 / text-on-danger / danger-700 / danger-800 */
@@ -739,13 +763,13 @@ code {
 .btn-danger:hover  { background-color: var(--danger-700); }
 .btn-danger:active { background-color: var(--danger-800); }
 
-/* token: transparent / text-subtle */
+/* token: transparent / text-subtle — v2.0 hover shows the border + text */
 .btn-ghost {
   background-color: transparent;
   color: var(--text-subtle);
-  border: none;
+  border-color: transparent;
 }
-.btn-ghost:hover  { background-color: var(--bg-muted); }
+.btn-ghost:hover  { border-color: var(--border); color: var(--text); }
 .btn-ghost:active { background-color: var(--bg-muted); }
 
 /* token: spacing-4 */
@@ -755,11 +779,14 @@ code {
 }
 
 /* --- ICON UTILITIES ---------------------------------------- */
-/* token: icon-* sizes and colors */
-.icon    { display: inline-block; }
-.icon-sm { font-size: var(--icon-sm); }
-.icon-md { font-size: var(--icon-md); }
-.icon-lg { font-size: var(--icon-lg); }
+/* token: icon-* sizes and colors — Lucide renders inline SVG (stroke: currentColor) */
+.icon    { display: inline-block; flex-shrink: 0; vertical-align: middle; }
+.icon-sm { width: var(--icon-sm); height: var(--icon-sm); }
+.icon-md { width: var(--icon-md); height: var(--icon-md); }
+.icon-lg { width: var(--icon-lg); height: var(--icon-lg); }
+
+/* token: primary — filled state (favorite star) */
+.icon.is-filled { fill: currentColor; }
 
 .icon-default { color: var(--icon-default); }
 .icon-active  { color: var(--icon-active);  }
@@ -784,10 +811,10 @@ code {
 }
 
 /* --- SCROLLBARS (flat, Chromium) --------------------------- */
-/* token: bg-muted / border-strong */
+/* token: bg-muted / border-strong / radius */
 ::-webkit-scrollbar          { width: 12px; height: 12px; }
 ::-webkit-scrollbar-track    { background: transparent; }
-::-webkit-scrollbar-thumb    { background: var(--bg-muted); border: none; }
+::-webkit-scrollbar-thumb    { background: var(--bg-muted); border: none; border-radius: var(--radius); }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
 
 /* --- NATIVE PROGRESS --------------------------------------- */
@@ -803,16 +830,18 @@ progress::-webkit-progress-bar   { background: var(--bg-muted); }
 progress::-webkit-progress-value { background: var(--primary); }
 
 /* --- TOOLTIP ----------------------------------------------- */
-/* token: text / bg / border / spacing-1/2 / font-xs */
+/* token: text / bg / border / spacing-1/2 / font-xs / radius */
 .tooltip {
   background: var(--text);
   color: var(--bg);
   border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
   padding: var(--spacing-1) var(--spacing-2);
   font-size: var(--font-xs);
 }
 
 /* --- REDUCED MOTION ---------------------------------------- */
+/* covers ::after too — the signature underline snaps (design-system.md §8/§12) */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0.01ms !important;

@@ -1,13 +1,14 @@
 /* ============================================================
    tokens.css — WinGet Hub v1.0.0
-   Reference: design-system.md v1.5 (Electron) — palette Windows 11 / Fluent Design (WCAG AA ajustée)
+   Reference: design-system.md v2.0 (Electron) — accent Windows 11 blue,
+   accent-tinted neutrals (H≈206), semantics derived per project
    ============================================================ */
 
 :root {
-  color-scheme: light;
+  color-scheme: light;             /* native controls follow the theme */
 
   /* --- TYPOGRAPHY --- */
-  --font-family: "Segoe UI", system-ui, sans-serif;
+  --font-family: system-ui, "Segoe UI", "Helvetica Neue", sans-serif;
   --font-xs:     12px;
   --font-sm:     14px;
   --font-base:   16px;
@@ -21,21 +22,21 @@
   --leading-tight:   1.25;
   --leading-normal:  1.5;
 
-  /* --- COLORS — light mode --- */
-  --bg:            #F3F3F3;
-  --bg-subtle:     #FFFFFF;
-  --bg-muted:      #E8E8E8;
-  --bg-elevated:   #FAFAFA;
-  --text:          #1A1A1A;
-  --text-subtle:   #404040;
-  --text-muted:    #6F6F6F;
-  --border:        #D4D4D4;
-  --border-subtle: #E0E0E0;
-  --border-strong: #ABABAB;
+  /* --- COLORS — light mode (accent-tinted neutrals, design-system.md §2) --- */
+  --bg:            #FDFEFF;
+  --bg-subtle:     #F5F8FA;
+  --bg-muted:      #EEF1F4;
+  --bg-elevated:   #FDFEFF;
+  --text:          #0F181E;
+  --text-subtle:   #65717B;
+  --text-muted:    #98A4AE;
+  --border:        #E1E6EA;
+  --border-subtle: #ECF0F3;
+  --border-strong: #96A4B0;
 
   /* --- PRIMARY — accent Windows 11 blue (WCAG AA ajusté) --- */
   --primary-50:  #EFF6FF;
-  --primary-400: #4EA8E8;
+  --primary-400: #60CDFF;   /* dark foreground accent stop (used as dark --primary) */
   --primary-600: #006CBF;
   --primary-700: #005A9E;
   --primary-800: #004880;
@@ -47,26 +48,27 @@
   --primary-hover:   var(--primary-700);
   --primary-pressed: var(--primary-800);
 
-  /* --- SEMANTIC --- */
-  --success-50:  #F0FDF4;
-  --success-600: #16A34A;
-  --warning-50:  #FFFBEB;
-  --warning-600: #D97706;
-  --danger-50:   #FFF1F2;
-  --danger-600:  #DC2626;
-  --danger-700:  #B91C1C;
-  --danger-800:  #991B1B;
-  --info-50:     #EFF6FF;
-  --info-600:    #2563EB;
+  /* --- SEMANTIC (derived toward the accent hue, ±6° cap — design-system.md §2) --- */
+  --success-50:  #EFF6F3;
+  --success-600: #328F6D;
+  --warning-50:  #F8F5EC;
+  --warning-600: #A58327;
+  --danger-50:   #F8EFF1;
+  --danger-600:  #BA3B52;
+  --danger-700:  #A23448;
+  --danger-800:  #8A2C3D;
+  --info-50:     var(--primary-bg);
+  --info-600:    var(--primary);
 
-  /* --- ICONS --- */
-  --icon-default: #6B7280;
-  --icon-active:  var(--primary-600);
-  --icon-success: #16A34A;
-  --icon-warning: #D97706;
-  --icon-danger:  #DC2626;
-  --icon-info:    #2563EB;
-  --icon-muted:   #9CA3AF;
+  /* --- ICONS (consume semantic/primary tokens via var()) --- */
+  --icon-default: var(--text-subtle);
+  --icon-active:  var(--primary);
+  --icon-success: var(--success-600);
+  --icon-warning: var(--warning-600);
+  --icon-danger:  var(--danger-600);
+  --icon-info:    var(--info-600);
+  --icon-muted:   var(--text-muted);
+  --icon-stroke:  1.75;
 
   /* --- SPACING --- */
   --spacing-1: 4px;
@@ -88,16 +90,17 @@
   --icon-lg: 24px;
 
   /* --- SHAPE / BORDER-WIDTH / OPACITY --- */
-  --radius:               0px;
+  --radius:               5px;
   --border-width:         1px;
   --border-width-emphasis: 2px;
   --border-width-accent:  4px;
   --opacity-disabled:     0.4;
   --opacity-overlay:      0.4;
 
-  /* --- TRANSITIONS --- */
-  --transition-default: 150ms ease;
-  --transition-slow:    250ms ease;
+  /* --- TRANSITIONS (--ease-out + durations) --- */
+  --ease-out:           cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-default: 160ms var(--ease-out);
+  --transition-slow:    240ms var(--ease-out);
 
   /* --- Z-INDEX --- */
   --z-content:        0;
@@ -125,43 +128,29 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  /* --- COLORS — dark mode (palette Windows 11 sombre, utilisateur) --- */
-  --bg:            #202020;
-  --bg-subtle:     #2C2C2C;
-  --bg-muted:      #383838;
-  --bg-elevated:   #383838;
-  --text:          #FFFFFF;
-  --text-subtle:   #C8C8C8;
-  --text-muted:    #9D9D9D;
-  --border:        #525252;
-  --border-subtle: #424242;
-  --border-strong: #636363;
+  /* --- COLORS — dark mode (accent-tinted neutrals, ascending surface ramp) --- */
+  --bg:            #181C20;
+  --bg-subtle:     #20272C;
+  --bg-elevated:   #252C32;
+  --bg-muted:      #293138;
+  --text:          #F2F5F7;
+  --text-subtle:   #94A2AD;
+  --text-muted:    #5F6C77;
+  --border:        #323B43;
+  --border-subtle: #272F35;
+  --border-strong: #52626F;
 
-  /* Primary flips to the brighter stop for dark surfaces */
+  /* Usage tokens flip to the brighter accent stop for dark surfaces */
   --primary:    var(--primary-400);
   --primary-bg: var(--primary-900);
 
-  /* Accent dark: #60CDFF — primary button text stays white for readability
-     (white on the --primary-600 #006CBF fill ≈ 5:1, AA) */
-  --primary-400: #60CDFF;
-  --text-on-primary: #FFFFFF;
-
-  /* --- ICONS dark --- */
-  --icon-default: #939393;
-  --icon-active:  #60CDFF;
-  --icon-success: #4A9E6A;
-  --icon-warning: #CCA840;
-  --icon-danger:  #C04A4A;
-  --icon-info:    #4682B4;
-  --icon-muted:   #6E6E6E;
-
-  /* --- SEMANTIC dark --- */
-  --success-50:  #1D3F2A;
-  --success-600: #4A9E6A;
-  --warning-50:  #483B13;
-  --warning-600: #CCA840;
-  --danger-50:   #441818;
-  --danger-600:  #C04A4A;
-  --info-50:     #1A3042;
-  --info-600:    #4682B4;
+  /* --- SEMANTIC dark (deeper surfaces, brighter --*-600) --- */
+  --success-50:  #26372F;
+  --success-600: #6EC4A4;
+  --warning-50:  #392F1B;
+  --warning-600: #D2B460;
+  --danger-50:   #38222B;
+  --danger-600:  #CB7282;
+  /* --danger-700 / --danger-800 kept from :root (button fill stays red + white text) */
+  /* --info-50 = var(--primary-bg), --info-600 = var(--primary) — follow automatically */
 }
