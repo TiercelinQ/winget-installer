@@ -1,6 +1,6 @@
 {
   "name": "winget-hub",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "description": "Application desktop Windows pour sélectionner et installer des logiciels depuis le catalogue winget.",
   "main": "./out/main/index.js",
   "scripts": {

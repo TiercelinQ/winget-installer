@@ -1,5 +1,5 @@
 export const APP_NAME = "WinGet Hub";
-export const APP_VERSION = "1.0.0";
+export const APP_VERSION = "1.3.0";
 
 export const PREFERENCES_FILENAME = "preferences.json";
 export const FAVORITES_FILENAME = "favorites.json";
